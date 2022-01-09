@@ -1,0 +1,6 @@
+.element__item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 0;
+}

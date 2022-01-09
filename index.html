@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <meta name="author" content="Кирилл Жакин">
+  <title>Жак-Ив Кусто</title>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="./images/header-mesto-russia.jpg" alt="Место Россия" class="logo">
+    </header>
+
+    <main class="content">
+
+      <section class="profile">
+        <img src="./images/avatar-image-cousteau.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто
+            <button class="profile__button-pen"></button>
+          </h1>
+          <p class="profile__about">Исследователь океана</p>
+        </div>
+        <button class="profile__button-plus"></button>
+      </section>
+      
+      <section class="elements">
+        <div class="element__item">
+          <img  src="./images/element-karachaevsk.jpg" alt="Карачаевск" class="element__photo">
+          <div class= "element__about">
+            <h2 class="element__title">Карачаевск</h2>
+            <img src="./images/element-heart.svg" alt="Сердечко" class="element__heart element__heart_active">
+          </div>
+        </div>
+        <div class="element__item">
+          <img  src="./images/element-elbrus.jpg" alt="Эльбрус" class="element__photo element__photo_transform">
+          <div class= "element__about">
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <img src="./images/element-heart.svg" alt="Сердечко" class="element__heart element__heart_active">
+          </div>
+        </div>
+        <div class="element__item">
+          <img  src="./images/element-dombay.jpg" alt="Домбай" class="element__photo">
+          <div class= "element__about">
+            <h2 class="element__title">Домбай</h2>
+            <img src="./images/element-heart.svg" alt="Сердечко" class="element__heart element__heart_active">
+          </div>
+        </div>
+        <div class="element__item">
+          <img  src="./images/element-altay.jpg" alt="Алтай" class="element__photo">
+          <div class= "element__about">
+            <h2 class="element__title">Алтай</h2>
+            <img src="./images/element-heart.svg" alt="Сердечко" class="element__heart element__heart_active">
+          </div>
+        </div>
+        <div class="element__item">
+          <img  src="./images/element-ural.jpg" alt="Урал" class="element__photo">
+          <div class= "element__about">
+            <h2 class="element__title">Урал</h2>
+            <img src="./images/element-heart.svg" alt="Сердечко" class="element__heart element__heart_active">
+          </div>
+        </div>
+        <div class="element__item">
+          <img  src="./images/element-ural2.jpg" alt="Урал" class="element__photo">
+          <div class= "element__about">
+            <h2 class="element__title">Уральские горы</h2>
+            <img src="./images/element-heart.svg" alt="Сердечко" class="element__heart element__heart_active">
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"> 
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+  
+    <section class="popup">
+      <form class="popup__form">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" class="popup__field popup__field_type_name" placeholder="Жак-Ив Кусто"> 
+        <input type="text" class="popup__field popup__field_type_about" placeholder="Исследователь океана">
+        <button class="popup__button">Сохранить</button>
+        <span class="popup__clous_btn"></span>
+      </form>
+    </section>
+  </div>
+<script src="./scripts/index.js"></script>
+</body>
+</html>
