@@ -9,7 +9,7 @@
     border: 2px solid #FFFFFF;
     border-radius: 2px;
     margin: auto 0 auto auto;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .profile__button-plus:hover {
