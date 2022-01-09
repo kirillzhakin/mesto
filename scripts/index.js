@@ -1,5 +1,5 @@
 const buttonAboutProject = document.querySelector('.profile__button-pen');
-const buttonClose = document.querySelector('.popup__close_btn');
+const buttonClose = document.querySelector('.popup__close-btn');
 const overlay = document.querySelector('.popup');
 const overlayActiveClass = 'popup_opened';
 
