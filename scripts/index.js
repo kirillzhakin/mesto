@@ -3,19 +3,26 @@ const buttonClose = document.querySelector('.popup__close-btn');
 const overlay = document.querySelector('.popup');
 const overlayActiveClass = 'popup_opened';
 
-buttonAboutProject.addEventListener('click', function() {
-  event.preventDefault();
+let formElement = document.querySelector('.popup__form');
+let nameInput = formElement.querySelector('.popup__field_type_name');
+let jobInput = formElement.querySelector('.popup__field_type_about');
+let profileName = document.querySelector ('.profile__name');
+let profileAbout = document.querySelector ('.profile__about');
+
+buttonAboutProject.addEventListener('click');
+
+buttonAboutProject.addEventListener(function() {
   openPopup();
 });
 
 function openPopup() {
   overlay.classList.add(overlayActiveClass);
-  document.body.style.overflow = 'hidden'
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileAbout.textContent;
 }
 
 function closePopup() {
   overlay.classList.remove(overlayActiveClass);
-  document.body.style.overflow = '';
 }
 
 buttonClose.addEventListener('click', function() {
@@ -24,22 +31,17 @@ buttonClose.addEventListener('click', function() {
 
 document.addEventListener('keydown', function(event) {
     if (event.code ==='Escape') {
-      closePopup(); 
+      closePopup();
     }
 })
 
-let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__field_type_name');
-let jobInput = formElement.querySelector('.popup__field_type_about');
-
 function formSubmitHandler (evt) {
-    evt.preventDefault();     
-
-    let profileName = document.querySelector ('.profile__name');
-    let profileAbout = document.querySelector ('.profile__about');
+    evt.preventDefault();
     
     profileName.textContent = nameInput.value;
     profileAbout.textContent = jobInput.value;
+
+    closePopup();
 }
 
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler);

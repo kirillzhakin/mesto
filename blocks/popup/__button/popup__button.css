@@ -3,9 +3,8 @@
   padding: 0;
   background: #000000;
   border-radius: 2px;
+  border: none;
   min-height: 50px;
-  font-family: Inter;
-  font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
