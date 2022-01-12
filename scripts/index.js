@@ -9,25 +9,19 @@ let jobInput = formElement.querySelector('.popup__field_type_about');
 let profileName = document.querySelector ('.profile__name');
 let profileAbout = document.querySelector ('.profile__about');
 
-buttonAboutProject.addEventListener('click');
-
-buttonAboutProject.addEventListener(function() {
-  openPopup();
-});
-
 function openPopup() {
   overlay.classList.add(overlayActiveClass);
   nameInput.value = profileName.textContent;
   jobInput.value = profileAbout.textContent;
 }
 
+buttonAboutProject.addEventListener('click', openPopup);
+
 function closePopup() {
   overlay.classList.remove(overlayActiveClass);
 }
 
-buttonClose.addEventListener('click', function() {
-  closePopup();
-})
+buttonClose.addEventListener('click', closePopup);
 
 document.addEventListener('keydown', function(event) {
     if (event.code ==='Escape') {
@@ -36,11 +30,9 @@ document.addEventListener('keydown', function(event) {
 })
 
 function formSubmitHandler (evt) {
-    evt.preventDefault();
-    
+    evt.preventDefault();    
     profileName.textContent = nameInput.value;
     profileAbout.textContent = jobInput.value;
-
     closePopup();
 }
 
