@@ -1,0 +1,27 @@
+.popup-plus__button {
+  margin: 48px 0 0 0;
+  padding: 0;
+  background: #000000;
+  border-radius: 2px;
+  border: none;
+  min-height: 50px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.popup-plus__button:hover {
+  opacity: 0.8;
+  transition: opacity, 0s, ease-out, 0.5s;
+}
+
+@media screen and (max-width: 430px) {
+  .popup-plus__button {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 45px 0 0 0;
+  }
+}

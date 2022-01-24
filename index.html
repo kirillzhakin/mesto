@@ -27,54 +27,11 @@
         </div>
         <button aria-label="Добавить содержимое" type="button" class="profile__button-plus"></button>
       </section>
-      
-      <section class="elements">
-        <div class="element">
-          <img  src="./images/element-karachaevsk.jpg" alt="Карачаевск" class="element__photo">
-          <div class= "element__about">
-            <h2 class="element__title">Карачаевск</h2>
-            <button aria-label="Нравится" type="button" class="element__heart element__heart_active"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img  src="./images/element-elbrus.jpg" alt="Эльбрус" class="element__photo">
-          <div class= "element__about">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button aria-label="Нравится" type="button" class="element__heart element__heart_active"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img  src="./images/element-dombay.jpg" alt="Домбай" class="element__photo">
-          <div class= "element__about">
-            <h2 class="element__title">Домбай</h2>
-            <button aria-label="Нравится" type="button" class="element__heart element__heart_active"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img  src="./images/element-altay.jpg" alt="Алтай" class="element__photo">
-          <div class= "element__about">
-            <h2 class="element__title">Алтай</h2>
-            <button aria-label="Нравится" type="button" class="element__heart element__heart_active"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img  src="./images/element-ural.jpg" alt="Урал" class="element__photo">
-          <div class= "element__about">
-            <h2 class="element__title">Урал</h2>
-            <button aria-label="Нравится" type="button" class="element__heart element__heart_active"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img  src="./images/element-ural2.jpg" alt="Урал" class="element__photo">
-          <div class= "element__about">
-            <h2 class="element__title">Уральские горы</h2>
-            <button aria-label="Нравится" type="button" class="element__heart element__heart_active"></button>
-          </div>
-        </div>
-      </section>
+
+      <section class="elements"></section>
     </main>
 
-    <footer class="footer"> 
+    <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
   
@@ -89,7 +46,40 @@
         <button aria-label="Выход" type="button" class="popup__close-btn"></button>
       </div>
     </div>
+
+    <div class="popup-plus">
+      <div class="popup-plus__container">
+        <form name="formpopup" class="popup-plus__form">
+          <h2 class="popup-plus__title">Новое место</h2>
+          <input type="text" name="name" required class="popup-plus__field popup-plus__field_type_title" placeholder="Название">
+          <input type="url" name="link" required class="popup-plus__field popup-plus__field_type_link" placeholder="Ссылка на картинку">
+          <button type="submit" class="popup-plus__button">Создать</button>
+        </form>
+        <button aria-label="Выход" type="button" class="popup-plus__close-btn"></button>
+      </div>
+    </div>
+
+    <div class="popup-image">
+      <div class="popup-image__container">
+        <form name="formpopup" class="popup-image__form">
+          <img src="" alt="" class="popup-image__photo">
+          <h2 class="popup-image__title"></h2>
+        </form>
+        <button aria-label="Выход" type="button" class="popup-image__close-btn"></button>
+      </div>
+    </div>
+
+    <template id="element-template">
+      <div class="element">
+        <img src="" alt="" class="element__photo">
+        <button aria-label="Корзина" type="button" class="element__trash"></button>
+        <div class= "element__about">
+          <h2 class="element__title"></h2>
+          <button aria-label="Нравится" type="button" class="element__heart"></button>
+        </div>
+      </div>
+    </template>
   </div>
-<script src="./scripts/index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

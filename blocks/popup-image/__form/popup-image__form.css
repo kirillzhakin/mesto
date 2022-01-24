@@ -1,0 +1,6 @@
+.popup-image__form {
+  display: flex;
+  flex-direction: column;
+  max-width: 75vw;
+  max-height: 75vh;
+}

@@ -1,0 +1,12 @@
+.popup-image__photo {
+  max-height: 540px;
+  margin: 0;
+  object-fit: cover;
+  transition: opacity, 0s, ease-out, 0.5s;
+}
+
+@media screen and (max-width: 630px) {
+  .popup-image__photo {
+    height: 299px;
+  }
+}
