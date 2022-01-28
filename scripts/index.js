@@ -25,19 +25,23 @@ const initialCards = [
   },
 ];
 
-// Кнопки открытия 
+// Кнопки открытия
 const buttonAboutProject = document.querySelector(".profile__button-pen");
 const buttonAddProject = document.querySelector(".profile__button-plus");
 
 //Попап
-const popupProfile = document.querySelector('.popup_type_profile');            
-const popupAdd = document.querySelector('.popup_type_card-add');                  
-const popupImage = document.querySelector('.popup_type_picture');         
+const popupProfile = document.querySelector(".popup_type_profile");
+const popupAdd = document.querySelector(".popup_type_card-add");
+const popupImage = document.querySelector(".popup_type_picture");
 
-//Кнопки закрытия 
-const profileCloseButton = document.querySelector(".popup__close-btn_type_profile");
+//Кнопки закрытия
+const profileCloseButton = document.querySelector(
+  ".popup__close-btn_type_profile"
+);
 const addCloseButton = document.querySelector(".popup__close-btn_type_add");
-const imageCloseButton = document.querySelector(".popup__close-btn_type_picture");
+const imageCloseButton = document.querySelector(
+  ".popup__close-btn_type_picture"
+);
 
 // Формы
 const formProfile = document.querySelector(".popup__form_type_profile");
@@ -54,14 +58,14 @@ const profileName = document.querySelector(".profile__name");
 const profileAbout = document.querySelector(".profile__about");
 
 // Активация
-const OVERLAY_ACTIVE_CLASS = 'popup_opened';
+const OVERLAY_ACTIVE_CLASS = "popup_opened";
 
 //Функции открыти закрытия
-function openPopup(popup) {                                    
+function openPopup(popup) {
   popup.classList.add(OVERLAY_ACTIVE_CLASS);
 }
 
-function closePopup(popup) {                                  
+function closePopup(popup) {
   popup.classList.remove(OVERLAY_ACTIVE_CLASS);
 }
 
@@ -72,15 +76,15 @@ function openPopupProfile() {
   openPopup(popupProfile);
 }
 
-function closePopupProfile() {                               
-  closePopup(popupProfile);                                 
+function closePopupProfile() {
+  closePopup(popupProfile);
 }
 
 function handleProfileSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
-  closePopupProfile();  
+  closePopupProfile();
 }
 
 function closePopupEscape(event) {
@@ -96,11 +100,10 @@ profileCloseButton.addEventListener("click", closePopupProfile);
 formProfile.addEventListener("submit", handleProfileSubmit);
 document.addEventListener("keydown", closePopupEscape);
 
-
 //Попап Адд
 
 function openPopupAdd() {
-   openPopup(popupAdd);
+  openPopup(popupAdd);
 }
 
 function closePopupAdd() {
@@ -115,7 +118,7 @@ const handleAddCardSubmit = (e) => {
   };
   renderElement(element, elementsWrap);
   e.target.reset();
-  closePopupAdd(); 
+  closePopupAdd();
 };
 
 buttonAddProject.addEventListener("click", openPopupAdd);
@@ -132,7 +135,7 @@ function openPopupImage() {
 }
 
 function closePopupImage() {
- closePopup(popupImage);
+  closePopup(popupImage);
 }
 
 // Карточки initialCards
@@ -141,7 +144,6 @@ const elementsWrap = document.querySelector(".elements");
 const elementTemplate = document
   .querySelector("#element-template")
   .content.querySelector(".element");
-
 
 const createCard = (item) => {
   const template = elementTemplate.cloneNode(true);
@@ -154,13 +156,13 @@ const createCard = (item) => {
   linkTemplate.src = item.link;
   linkTemplate.alt = item.name;
 
-  function openPopupPhoto() { 
+  function openPopupPhoto() {
     openPopup(popupImage);
     popupImageTitle.textContent = item.name;
-    popupImagePhoto.alt = item.name; 
-    popupImagePhoto.src = item.link; 
-  };
-  
+    popupImagePhoto.alt = item.name;
+    popupImagePhoto.src = item.link;
+  }
+
   likeButton.addEventListener("click", handleLikeButton);
   trashButton.addEventListener("click", handleTrashButton);
   linkTemplate.addEventListener("click", openPopupPhoto);
