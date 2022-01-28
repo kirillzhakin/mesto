@@ -138,6 +138,8 @@ function closePopupImage() {
   closePopup(popupImage);
 }
 
+imageCloseButton.addEventListener("click", closePopupImage);
+
 // Карточки initialCards
 
 const elementsWrap = document.querySelector(".elements");
@@ -166,7 +168,6 @@ const createCard = (item) => {
   likeButton.addEventListener("click", handleLikeButton);
   trashButton.addEventListener("click", handleTrashButton);
   linkTemplate.addEventListener("click", openPopupPhoto);
-  imageCloseButton.addEventListener("click", closePopupImage);
   return template;
 };
 
