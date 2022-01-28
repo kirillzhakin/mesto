@@ -1,4 +1,4 @@
-.popup-image__photo {
+.popup__picture {
   max-height: 540px;
   margin: 0;
   object-fit: cover;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 630px) {
-  .popup-image__photo {
+  .popup__picture {
     height: 299px;
   }
 }

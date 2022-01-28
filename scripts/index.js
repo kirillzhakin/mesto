@@ -1,178 +1,186 @@
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
 ];
 
-// Попап Редактировать профиль
+// Кнопки открытия 
+const buttonAboutProject = document.querySelector(".profile__button-pen");
+const buttonAddProject = document.querySelector(".profile__button-plus");
 
-const buttonAboutProject = document.querySelector('.profile__button-pen');
-const buttonClose = document.querySelector('.popup__close-btn');
-const overlay = document.querySelector('.popup');
-const overlayActiveClass = ('popup_opened');
+//Попап
+const popupProfile = document.querySelector('.popup_type_profile');            
+const popupAdd = document.querySelector('.popup_type_card-add');                  
+const popupImage = document.querySelector('.popup_type_picture');         
 
-let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__field_type_name');
-let jobInput = formElement.querySelector('.popup__field_type_about');
-let profileName = document.querySelector ('.profile__name');
-let profileAbout = document.querySelector ('.profile__about');
+//Кнопки закрытия 
+const profileCloseButton = document.querySelector(".popup__close-btn_type_profile");
+const addCloseButton = document.querySelector(".popup__close-btn_type_add");
+const imageCloseButton = document.querySelector(".popup__close-btn_type_picture");
 
-function openPopup() {
-  overlay.classList.add(overlayActiveClass);
+// Формы
+const formProfile = document.querySelector(".popup__form_type_profile");
+const formAddElement = document.querySelector(".popup__form_type_add");
+
+// Инпуты
+const nameAddInput = formAddElement.querySelector(".popup__field_type_title");
+const linkAddInput = formAddElement.querySelector(".popup__field_type_link");
+const nameInput = formProfile.querySelector(".popup__field_type_name");
+const jobInput = formProfile.querySelector(".popup__field_type_about");
+
+//Селекторы профайла
+const profileName = document.querySelector(".profile__name");
+const profileAbout = document.querySelector(".profile__about");
+
+// Активация
+const OVERLAY_ACTIVE_CLASS = 'popup_opened';
+
+//Функции открыти закрытия
+function openPopup(popup) {                                    
+  popup.classList.add(OVERLAY_ACTIVE_CLASS);
+}
+
+function closePopup(popup) {                                  
+  popup.classList.remove(OVERLAY_ACTIVE_CLASS);
+}
+
+// Попап профайл
+function openPopupProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileAbout.textContent;
+  openPopup(popupProfile);
 }
 
-buttonAboutProject.addEventListener('click', openPopup);
-
-function closePopup() {
-  overlay.classList.remove(overlayActiveClass);
+function closePopupProfile() {                               
+  closePopup(popupProfile);                                 
 }
 
-buttonClose.addEventListener('click', closePopup);
-
-document.addEventListener('keydown', function(event) {
-    if (event.code ==='Escape') {
-      closePopup();
-    }
-})
-
-function formSubmitHandler (evt) {
-    evt.preventDefault();    
-    profileName.textContent = nameInput.value;
-    profileAbout.textContent = jobInput.value;
-    closePopup();
+function handleProfileSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = jobInput.value;
+  closePopupProfile();  
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+function closePopupEscape(event) {
+  if (event.code === "Escape") {
+    closePopup(popupProfile);
+    closePopup(popupAdd);
+    closePopup(popupImage);
+  }
+}
 
-// Попап Добавить карточку
+buttonAboutProject.addEventListener("click", openPopupProfile);
+profileCloseButton.addEventListener("click", closePopupProfile);
+formProfile.addEventListener("submit", handleProfileSubmit);
+document.addEventListener("keydown", closePopupEscape);
 
-const buttonAddProject = document.querySelector('.profile__button-plus');
-const buttonAddClose = document.querySelector('.popup-plus__close-btn');
-const overlayAdd = document.querySelector('.popup-plus');
-const overlayAddActiveClass = ('popup-plus_opened');
 
-let formAddElement = document.querySelector('.popup-plus__form');
-let nameAddInput = formAddElement.querySelector('.popup-plus__field_type_title');
-let linkAddInput = formAddElement.querySelector('.popup-plus__field_type_link');
+//Попап Адд
 
-function openPopupplus() {
-  overlayAdd.classList.add(overlayAddActiveClass);
-};
+function openPopupAdd() {
+   openPopup(popupAdd);
+}
 
-buttonAddProject.addEventListener('click', openPopupplus);
+function closePopupAdd() {
+  closePopup(popupAdd);
+}
 
-function closePopupplus() {
-  overlayAdd.classList.remove(overlayAddActiveClass);
-};
-
-buttonAddClose.addEventListener('click', closePopupplus);
-
-document.addEventListener('keydown', function(event) {
-    if (event.code ==='Escape') {
-      closePopupplus();
-    };
-});
-
-const hendleElementFormSubmit =(e)=> {
+const handleAddCardSubmit = (e) => {
   e.preventDefault();
   const element = {
     name: nameAddInput.value,
-    link: linkAddInput.value 
-  }
+    link: linkAddInput.value,
+  };
   renderElement(element, elementsWrap);
-  closePopupplus();
+  e.target.reset();
+  closePopupAdd(); 
+};
+
+buttonAddProject.addEventListener("click", openPopupAdd);
+addCloseButton.addEventListener("click", closePopupAdd);
+formAddElement.addEventListener("submit", handleAddCardSubmit);
+
+// Попап картинка
+// Селекторы попап с картинкой
+const popupImagePhoto = document.querySelector(".popup__picture");
+const popupImageTitle = document.querySelector(".popup__title-picture");
+
+function openPopupImage() {
+  openPopup(popupImage);
 }
 
-formAddElement.addEventListener ('submit', hendleElementFormSubmit);
-
-
-// Попап с картинкой
-
-const buttonImgClose = document.querySelector('.popup-image__close-btn');
-const overlayImg = document.querySelector('.popup-image');
-const overlayImgActiveClass = ('popup-image_opened');
-let formImgElement = document.querySelector('.popup-image__form');
-let popupImagephoto = document.querySelector('.popup-image__photo');
-let popupImagetitle = document.querySelector('.popup-image__title');
+function closePopupImage() {
+ closePopup(popupImage);
+}
 
 // Карточки initialCards
 
-const elementsWrap = document.querySelector('.elements');
-const elementTemplate = document.querySelector('#element-template')
-     .content.querySelector('.element');
+const elementsWrap = document.querySelector(".elements");
+const elementTemplate = document
+  .querySelector("#element-template")
+  .content.querySelector(".element");
 
-const getElement =(item) => {
-  
+
+const createCard = (item) => {
   const template = elementTemplate.cloneNode(true);
-  const titletemplate = template.querySelector('.element__title');
-  const linktemplate = template.querySelector('.element__photo');
-  const likeButton = template.querySelector('.element__heart');
-  const TrashButton = template.querySelector('.element__trash');
-  const elementPhoto = template.querySelector( '.element__photo');
+  const titleTemplate = template.querySelector(".element__title");
+  const linkTemplate = template.querySelector(".element__photo");
+  const likeButton = template.querySelector(".element__heart");
+  const trashButton = template.querySelector(".element__trash");
 
-  likeButton.addEventListener('click', handleLikeButton);
-  TrashButton.addEventListener('click', handleTrashButton);
-  
-  titletemplate.textContent = item.name;
-  linktemplate.src = item.link;
-  
-  function openPopupimage() {
-    overlayImg.classList.add(overlayImgActiveClass);
-    popupImagetitle.textContent = item.name;
-    popupImagephoto.alt = item.name;
-    popupImagephoto.src = item.link;
+  titleTemplate.textContent = item.name;
+  linkTemplate.src = item.link;
+  linkTemplate.alt = item.name;
+
+  function openPopupPhoto() { 
+    openPopup(popupImage);
+    popupImageTitle.textContent = item.name;
+    popupImagePhoto.alt = item.name; 
+    popupImagePhoto.src = item.link; 
   };
-
-  function closePopupimage() {
-    overlayImg.classList.remove(overlayImgActiveClass);
-  };
-
-  elementPhoto.addEventListener('click', openPopupimage);
-  buttonImgClose.addEventListener('click', closePopupimage);
-  document.addEventListener('keydown', function(event) {
-    if (event.code ==='Escape') {
-      closePopupimage();
-    };
-  });
-  return template; 
+  
+  likeButton.addEventListener("click", handleLikeButton);
+  trashButton.addEventListener("click", handleTrashButton);
+  linkTemplate.addEventListener("click", openPopupPhoto);
+  imageCloseButton.addEventListener("click", closePopupImage);
+  return template;
 };
 
-const renderElement =(item, elementsWrap) => {
-  const template = getElement(item)
+const renderElement = (item, elementsWrap) => {
+  const template = createCard(item);
   elementsWrap.prepend(template);
 };
 
 const handleLikeButton = (e) => {
-  e.target.classList.toggle('element__heart_active');
+  e.target.classList.toggle("element__heart_active");
 };
 
 const handleTrashButton = (e) => {
-  e.target.closest('.element').remove();
+  e.target.closest(".element").remove();
 };
 
-initialCards.forEach(item => {
+initialCards.forEach((item) => {
   renderElement(item, elementsWrap);
 });
