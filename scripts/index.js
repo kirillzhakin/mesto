@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 // Кнопки открытия
 const buttonAboutProject = document.querySelector(".profile__button-pen");
 const buttonAddProject = document.querySelector(".profile__button-plus");
@@ -46,6 +19,7 @@ const imageCloseButton = document.querySelector(
 // Формы
 const formProfile = document.querySelector(".popup__form_type_profile");
 const formAddElement = document.querySelector(".popup__form_type_add");
+const popupList = document.querySelectorAll(".popup");
 
 // Инпуты
 const nameAddInput = formAddElement.querySelector(".popup__field_type_title");
@@ -60,19 +34,39 @@ const profileAbout = document.querySelector(".profile__about");
 // Активация
 const OVERLAY_ACTIVE_CLASS = "popup_opened";
 
-//Функции открыти закрытия
+//Функции открытия закрытия
 function openPopup(popup) {
   popup.classList.add(OVERLAY_ACTIVE_CLASS);
+  document.addEventListener("keydown", closePopupEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove(OVERLAY_ACTIVE_CLASS);
+  document.removeEventListener("keydown", closePopupEscape);
+}
+
+//Функция закрытия Оверлэй
+popupList.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+  });
+});
+
+// Функция закрытия Esc
+function closePopupEscape(event) {
+  if (event.key === "Escape") {
+    const activePopup = document.querySelector(`.${OVERLAY_ACTIVE_CLASS}`);
+    closePopup(activePopup);
+  }
 }
 
 // Попап профайл
 function openPopupProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileAbout.textContent;
+  toggleButtonState(formProfile, formsValidation);
   openPopup(popupProfile);
 }
 
@@ -87,22 +81,13 @@ function handleProfileSubmit(evt) {
   closePopupProfile();
 }
 
-function closePopupEscape(event) {
-  if (event.code === "Escape") {
-    closePopup(popupProfile);
-    closePopup(popupAdd);
-    closePopup(popupImage);
-  }
-}
-
 buttonAboutProject.addEventListener("click", openPopupProfile);
 profileCloseButton.addEventListener("click", closePopupProfile);
 formProfile.addEventListener("submit", handleProfileSubmit);
-document.addEventListener("keydown", closePopupEscape);
 
 //Попап Адд
-
 function openPopupAdd() {
+  toggleButtonState(formAddElement, formsValidation);
   openPopup(popupAdd);
 }
 
