@@ -1,3 +1,5 @@
+import {openPopup} from './index.js';
+
 const popupImagePhoto = document.querySelector(".popup__picture");
 const popupImageTitle = document.querySelector(".popup__title-picture");
 const popupImage = document.querySelector(".popup_type_picture");
@@ -35,14 +37,14 @@ export default class Card {
   }
 
   _handleTrashClick() {
-    this._element.querySelector(".element__trash").closest(".element").remove();
+    this._element.remove();
   }
 
    _handleOpenPopup() {
     popupImagePhoto.src = this._link;
     popupImagePhoto.alt = this._name;
     popupImageTitle.textContent = this._name;
-    popupImage.classList.add('popup_opened');
+    openPopup(popupImage);
   }
 
   _setEventListeners() {

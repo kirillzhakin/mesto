@@ -19,12 +19,14 @@ const popupList = document.querySelectorAll(".popup");
 const validAdd = new FormValidator(formsValidation, formAddElement);
 const validProfile = new FormValidator(formsValidation, formProfile);
 
+validAdd.enableValidation();
+validProfile.enableValidation();
 
 // Активация
 const OVERLAY_ACTIVE_CLASS = "popup_opened";
 
 //Функции открытия закрытия
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add(OVERLAY_ACTIVE_CLASS);
   document.addEventListener("keydown", closePopupEscape);
 }
@@ -64,13 +66,15 @@ const popupAdd = document.querySelector(".popup_type_card-add");
 
 //Попап Профайл
 function openPopupProfile() {
-  validProfile.enableValidation();
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileAbout.textContent; 
+  validProfile.resetErrors(formProfile);
   openPopup(popupProfile);
 }
 
 //Попап Адд
 function openPopupAdd() {
-  validAdd.enableValidation();
+  validAdd.resetErrors(formAddElement);
   openPopup(popupAdd);
 }
 
@@ -129,7 +133,5 @@ formAddElement.addEventListener("submit", handleAddCardSubmit);
 
 //Карточки
 initialCards.forEach((item) => {
-  const card = new Card(item, "#element-template");
-  const cardElement = card.generateCard();
-  elementsWrap.append(cardElement);
+  elementsWrap.append(createCard(item));
 });
