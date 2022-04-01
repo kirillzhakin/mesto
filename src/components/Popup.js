@@ -1,4 +1,4 @@
-import { OVERLAY_ACTIVE_CLASS, popupList } from "../utils/constants.js";
+import { OVERLAY_ACTIVE_CLASS } from "../utils/constants.js";
 
 export default class Popup {
   constructor(popupSelector) {
@@ -19,15 +19,13 @@ export default class Popup {
   }
 
   setEventListeners() {
-    popupList.forEach(() => {
-      this._popup.addEventListener("mousedown", (evt) => {
-        if (evt.target.classList.contains("popup_opened")) {
-          this.close();
-        }
-        if (evt.target.classList.contains("popup__close-btn")) {
-          this.close();
-        }
-      });
+    this._popup.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains("popup_opened")) {
+        this.close();
+      }
+      if (evt.target.classList.contains("popup__close-btn")) {
+        this.close();
+      }
     });
   }
 }

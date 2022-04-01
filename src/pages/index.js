@@ -28,10 +28,10 @@ validAdd.enableValidation();
 
 //Редактирование профиля
 
-const userProfile = new UserInfo(profileName, profileAbout);
+const userInfo = new UserInfo(profileName, profileAbout);
 
-function handleProfileSubmit(userData) {
-  userProfile.setUserInfo(userData);
+function handleProfileSubmit(data) {
+  userInfo.setUserInfo(data);
   popupTypeProfile.close();
 }
 
@@ -44,9 +44,9 @@ popupTypeProfile.setEventListeners();
 
 // Нажатие на кнопку "Редактировать профиль"
 function openPopupProfile() {
-  userProfile.getUserInfo();
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileAbout.textContent;
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name; 
+  jobInput.value = userData.about; 
   validProfile.resetErrors(formProfile);
   popupTypeProfile.open();
 }
@@ -70,8 +70,9 @@ popupTypeAdd.setEventListeners();
 
 // Нажатие на кнопку "Добавить карточку"
 function openPopupAdd() {
-  popupTypeAdd.open();
   validAdd.resetErrors(formAddElement);
+  popupTypeAdd.open();
+  
 }
 
 buttonAddProject.addEventListener("click", openPopupAdd);

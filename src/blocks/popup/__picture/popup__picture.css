@@ -4,9 +4,3 @@
   object-fit: cover;
   transition: opacity, 0s, ease-out, 0.5s;
 }
-
-@media screen and (max-width: 630px) {
-  .popup__picture {
-    height: 299px;
-  }
-}

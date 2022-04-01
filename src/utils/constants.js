@@ -9,7 +9,6 @@ export const formsValidation = {
   
 
 export const OVERLAY_ACTIVE_CLASS = "popup_opened";
-export const popupList = document.querySelectorAll(".popup");
 
 // Формы
 export const formProfile = document.querySelector(".popup__form_type_profile");
@@ -22,8 +21,8 @@ export const nameInput = formProfile.querySelector(".popup__field_type_name");
 export const jobInput = formProfile.querySelector(".popup__field_type_about");
 
 //Селекторы Профайла
-export const profileName = document.querySelector(".profile__name");
-export const profileAbout = document.querySelector(".profile__about");
+export const profileName = ".profile__name";
+export const profileAbout = ".profile__about";
 
 // Кнопки открытия
 export const buttonAboutProject = document.querySelector(".profile__button-pen");
