@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Кирилл Жакин" />
+    <link rel="stylesheet" href="pages/index.css" />
     <title>Жак-Ив Кусто</title>
   </head>
 
@@ -19,11 +20,14 @@
 
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/avatar-image-cousteau.jpg')%>"
-            alt="Жак-Ив Кусто"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar">
+            <div alt="Аватар" class="profile__avatar-picture"></div>
+            <button
+              aria-label="Изменить аватар"
+              type="button"
+              class="profile__button-avatar"
+            ></button>
+          </div>
           <div class="profile__info">
             <div class="profile__add-profile">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -49,6 +53,9 @@
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
 
+      <!-- ***************************************************************
+      Всплывающее окно редактирования профиля
+    -->
       <div class="popup popup_type_profile">
         <div class="popup__container">
           <form
@@ -83,7 +90,12 @@
               />
               <span id="about-profile-error" class="error"></span>
             </div>
-            <button type="submit" class="popup__button">Сохранить</button>
+            <input
+              type="submit"
+              value="Сохранить"
+              name="submit"
+              class="popup__button popup__button_type_save"
+            />
           </form>
           <button
             aria-label="Выход"
@@ -92,7 +104,9 @@
           ></button>
         </div>
       </div>
-
+      <!-- ***************************************************************
+      Всплывающее окно добавления фотографии
+    -->
       <div class="popup popup_type_card-add">
         <div class="popup__container">
           <form
@@ -125,7 +139,12 @@
               />
               <span id="url-card-error" class="error"></span>
             </div>
-            <button type="submit" class="popup__button">Создать</button>
+            <input
+              type="submit"
+              value="Создать"
+              name="submit"
+              class="popup__button popup__button_type_save"
+            />
           </form>
           <button
             aria-label="Выход"
@@ -135,6 +154,9 @@
         </div>
       </div>
 
+      <!-- ***************************************************************
+      Всплывающее окно просмотра фотографии
+    -->
       <div class="popup popup_type_picture">
         <div class="popup__container-picture">
           <figure name="form-popup" class="popup__form-picture">
@@ -153,6 +175,75 @@
         </div>
       </div>
 
+      <!-- ***************************************************************
+      Всплывающее окно подтверждения
+    -->
+      <div class="popup popup_type_card-delete">
+        <div class="popup__container">
+          <form
+            name="form-popup"
+            class="popup__form popup__form_type_delete"
+            novalidate
+          >
+            <h2 class="popup__title">Вы уверены?</h2>
+
+            <button
+              type="submit"
+              class="popup__button popup__button_type_delete"
+            >
+              Да
+            </button>
+          </form>
+          <button
+            aria-label="Да"
+            type="button"
+            class="popup__close-btn"
+          ></button>
+        </div>
+      </div>
+
+      <!-- ***************************************************************
+      Всплывающее окно изменения аватара
+    -->
+      <div class="popup popup_type_card-avatar">
+        <div class="popup__container">
+          <form
+            name="form-popup"
+            class="popup__form popup__form_type_avatar"
+            novalidate
+          >
+            <h2 class="popup__title">Обновить аватар</h2>
+
+            <div class="popup__container-field">
+              <input
+                type="url"
+                name="avatar"
+                id="url-avatar"
+                class="popup__field popup__field_type_avatar"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span id="url-avatar-error" class="error"></span>
+            </div>
+
+            <input
+              type="submit"
+              value="Сохранить"
+              name="submit"
+              class="popup__button popup__button_type_save"
+            />
+          </form>
+          <button
+            aria-label="Сохранить"
+            type="button"
+            class="popup__close-btn"
+          ></button>
+        </div>
+      </div>
+
+      <!-- ***************************************************************
+    Подключаем шаблон
+   -->
       <template id="element-template">
         <div class="element">
           <img
@@ -167,11 +258,14 @@
           ></button>
           <div class="element__about">
             <h2 class="element__title"></h2>
-            <button
-              aria-label="Нравится"
-              type="button"
-              class="element__heart"
-            ></button>
+            <div class="element__heart-container">
+              <button
+                aria-label="Нравится"
+                type="button"
+                class="element__heart"
+              ></button>
+              <h3 class="element__heart-number"></h3>
+            </div>
           </div>
         </div>
       </template>

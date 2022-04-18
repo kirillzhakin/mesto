@@ -1,9 +1,21 @@
 export default class Card {
-  constructor({ data, handleCardClick }, cardSelector) {
+  constructor(
+    data,
+    handleCardClick,
+    { handleLikeClick, handleCardDelete },
+    currentId,
+    cardSelector
+  ) {
     this._name = data.name;
-    this._alt = data.name;
+
     this._link = data.link;
+    this._likes = data.likes;
+    this._id = data._id;
+    this._currentId = currentId;
+    this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
+    this._handleCardDelete = handleCardDelete;
     this._cardSelector = cardSelector;
   }
 
@@ -15,36 +27,64 @@ export default class Card {
     return cardElement;
   }
 
+  _getView() {
+    if (this._ownerId !== this._currentId) {
+      this._element
+        .querySelector(".element__trash")
+        .classList.add("element__trash_block");
+    }
+  }
+
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector(".element__title").textContent = this._name;
     this._element.querySelector(".element__photo").src = this._link;
     this._element.querySelector(".element__photo").alt = this._name;
+    this._element.querySelector(".element__heart-number").textContent =
+      this._likes.length;
+    this._getView();
     return this._element;
   }
 
-  _handleHeartClick() {
-    this._element
-      .querySelector(".element__heart")
-      .classList.toggle("element__heart_active");
+  isLiked() {
+    return this._isLiked;
   }
 
-  _handleTrashClick() {
+  setLike(data) {
+    this._isLiked =
+      data.likes.filter((item) => {
+        return item._id == this._currentId;
+      }).length > 0;
+    this._element.querySelector(".element__heart-number").textContent =
+      data.likes.length;
+    if (this._isLiked) {
+      this._element
+        .querySelector(".element__heart")
+        .classList.add("element__heart_active");
+    } else {
+      this._element
+        .querySelector(".element__heart")
+        .classList.remove("element__heart_active");
+    }
+  }
+
+  deleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
     this._element
       .querySelector(".element__heart")
       .addEventListener("click", () => {
-        this._handleHeartClick();
+        this._handleLikeClick();
       });
 
     this._element
       .querySelector(".element__trash")
       .addEventListener("click", () => {
-        this._handleTrashClick();
+        this._handleCardDelete();
       });
 
     this._element
