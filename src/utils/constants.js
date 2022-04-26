@@ -21,7 +21,7 @@ export const jobInput = formProfile.querySelector(".popup__field_type_about");
 //Селекторы Профайла
 export const profileName = ".profile__name";
 export const profileAbout = ".profile__about";
-export const avatarImage = document.querySelector(".profile__avatar-picture");
+export const avatarImage = ".profile__avatar-picture";
 
 // Кнопки открытия
 export const buttonAboutProject = document.querySelector(".profile__button-pen");

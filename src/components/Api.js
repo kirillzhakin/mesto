@@ -13,7 +13,6 @@ export default class Api {
 
   // 2. Загрузка карточек с сервера
   getInitialCards() {
-    debugger;
     return fetch(`${this.baseUrl}cards`, {
       headers: this.headers,
     }).then(this._getResponseData);
@@ -44,24 +43,24 @@ export default class Api {
   }
 
   // 5. Отображение количества лайков карточки
-  likeCard(id) {
-    return fetch(`${this.baseUrl}cards/likes/${id}`, {
+  likeCard(cardId) {
+    return fetch(`${this.baseUrl}cards/likes/${cardId}`, {
       method: "PUT",
       headers: this.headers,
     }).then(this._getResponseData);
   }
 
   // 7. Удаление карточки
-  deleteCard(id) {
-    return fetch(`${this.baseUrl}cards/${id}`, {
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}cards/${cardId}`, {
       method: "DELETE",
       headers: this.headers,
     }).then(this._getResponseData);
   }
 
   // 8. Постановка и снятие лайка
-  dislikeCard(id) {
-    return fetch(`${this.baseUrl}cards/likes/${id}`, {
+  dislikeCard(cardId) {
+    return fetch(`${this.baseUrl}cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this.headers,
     }).then(this._getResponseData);

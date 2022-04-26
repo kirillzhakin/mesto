@@ -7,10 +7,9 @@ export default class Card {
     cardSelector
   ) {
     this._name = data.name;
-
     this._link = data.link;
     this._likes = data.likes;
-    this._id = data._id;
+    this._cardId = data._id;
     this._currentId = currentId;
     this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
@@ -69,7 +68,7 @@ export default class Card {
     }
   }
 
-  deleteCard() {
+  removeCard() {
     this._element.remove();
     this._element = null;
   }
@@ -77,20 +76,14 @@ export default class Card {
   _setEventListeners() {
     this._element
       .querySelector(".element__heart")
-      .addEventListener("click", () => {
-        this._handleLikeClick();
-      });
-
+      .addEventListener("click", () => this._handleLikeClick());
     this._element
       .querySelector(".element__trash")
-      .addEventListener("click", () => {
-        this._handleCardDelete();
-      });
-
+      .addEventListener("click", () => this._handleCardDelete());
     this._element
       .querySelector(".element__photo")
-      .addEventListener("click", () => {
-        this._handleCardClick(this._name, this._link);
-      });
+      .addEventListener("click", () =>
+        this._handleCardClick(this._name, this._link)
+      );
   }
 }
