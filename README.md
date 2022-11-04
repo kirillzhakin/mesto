@@ -6,7 +6,7 @@
 
 Репозиторий: [GitHub](https://github.com/kirillzhakin/mesto)
 
-Ссылка на сайт:
+Cайт: [Mesto](https://mesto2022.vercel.app/)
 
 Макет: [Figma](https://www.figma.com/file/5H3gsn5lIGPwzBPby9jAOo/JavaScript.-Sprint-12?node-id=0%3A1)
 
